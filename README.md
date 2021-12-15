@@ -12,7 +12,7 @@ OnGUI()
 OnDisable()
 OnEnable()
 
-# [Application.targetFrameRate](https://docs.unity3d.com/ScriptReference/Application-targetFrameRate.html)
+# [FPS & Application Target Frame Rate](https://docs.unity3d.com/ScriptReference/Application-targetFrameRate.html)
 
 Instructs the game to try to render at a specified frame rate.
 
@@ -162,12 +162,15 @@ When you are computing some expensive and/or long-term operations, Threads can s
 
 
 # Order of execution for event functions
+[ click here](https://docs.unity3d.com/2019.4/Documentation/Manual/ExecutionOrder.html)
+
+***********************************************
 
 # [DoTween](http://dotween.demigiant.com/getstarted.php)
 ## [Download and Setup DoTween Package in unity](http://dotween.demigiant.com/getstarted.php)
 *Import from Asset Store, Go to DoTween Utility Panel -> Setup*
  
-![DoTween](dotween.png) 
+![DoTween](pic/dotween.png) 
 
 ##  What is tweening
  **Inbetweening**, also commonly known as tweening, is a process in animation that involves generating intermediate frames, called inbetweens, between two keyframes. The intended result is to create the illusion of movement by smoothly transitioning one image into another
@@ -188,8 +191,8 @@ Prefix for all settings
 ##### On:
 Prefix for all callbacks
 
- ![DoTween](splash_shortcuts.png) 
- ![DoTween](splash_lambda.png) 
+ ![DoTween](pic/splash_shortcuts.png) 
+ ![DoTween](pic/splash_lambda.png) 
  ##### Basic Code Structure
  ```csharp
 // The shortcuts way
@@ -303,4 +306,634 @@ If you want to reuse the same tween, just set its autoKill behaviour to FALSE (e
 
 If your tween's target becomes NULL while a tween is playing errors might happen. You'll have to either be careful or activate the safe mode
 
+ *****************************************************
  
+# [Render pipelines ](https://www.youtube.com/watch?v=HqaQJfuK_u8)
+A render pipeline performs a series of operations that take the contents of a Scene, and displays them on a screen. At a high level, these operations are:
+
+* Culling
+* Rendering
+* Post-processing
+
+
+## Scriptable Render Pipeline fundamentals
+Unity’s Scriptable Render Pipeline (SRP) is a feature that allows you to control rendering via C# scripts.SRP is the technology that underpins the Universal Render Pipeline (URP) and the High Definition Render Pipeline (HDRP).
+
+**The Scriptable Render Pipeline is a thin API layer that lets you schedule and configure rendering commands using C# scripts. Unity passes these commands to its low-level graphics architecture, which then sends instructions to the graphics API.**
+
+#  Universal Render Pipeline
+<small>**The Universal Render Pipeline (URP) is a prebuilt Scriptable Render Pipeline**, made by Unity. URP provides artist-friendly workflows that let you quickly and easily create optimized graphics across a range of platforms, from mobile to high-end consoles and PCs. **An earlier version of URP was called the Lightweight Render Pipeline (LWRP). URP replaces LWRP.**</small>
+
+# High Definition Render Pipeline
+The High Definition Render Pipeline (HDRP) is a prebuilt Scriptable Render Pipeline, built by Unity. HDRP lets you create **cutting-edge, high-fidelity graphics for high-end platforms**.
+
+![](pic/urp.PNG)
+
+# Project
+
+* Create a new project using Universal RP.
+* Import asset from your library/AssetStor.
+* Convert Scene to Edit ->  Render Pipeline ->URP->Upgrade Project Material.
+* If Some material still is not convert to URP Material go to Material Change its Shader -> URP->Sample Lit (As needed), Customize Material Setting. Important to Chose Base Map file & alpha 255
+
+![urp material default settings](pic/urpmaterialdefaultSettings.png)
+
+* Post Processing: Create Volume on the scene, Click Circle near Profiler, chose default SampleSceneProfile, Check Camera post processing option.
+* Fog Settings: Windows->Renderer -> Light Settings : Other Settings -> Density 
+* Multiple Volume: Add new Box Volume(Local) and add customize profiler(add Color Adjustment, change its saturation to -100, now navigate your camera to the volume to see the difference ) 
+![](pic/urp-usemultiplevolume.png)
+
+# Frame Debugger
+Window > Analysis > Frame Debugger
+
+
+# [Unity Object Pool](https://github.com/gitOpu/ObjectPooling_Unity)
+An object pool provides an efficient way to reuse objects, and thus keep the memory foot print of all dynamically created objects within fixed bounds. This is crucial for maintaining consistent frame rates in real time games (especially on mobile), as frequent garbage collection spikes would likely lead to inconsistent performance.
+
+# [Generics](https://learn.unity.com/tutorial/generics#)
+Generics allow you to define the specification of the data type of programming elements in a class or a method, until it is actually used in the program. In other words, generics allow you to write a class or method that can work with any data type.
+##### Generic Method
+
+```csharp
+public class Genric : MonoBehaviour
+{
+    public T GenricMethod<T>(T param)
+    {
+        return param;
+    }
+}
+```
+##### Generic Class
+```csharp
+public class GenricClass <T>
+{
+    private T item;
+    public void Capacity(T param)
+    {
+        item = param;
+    }
+}
+```
+##### Generic Class and Method Instantiate from another class
+```csharp
+public class GenricExample : MonoBehaviour
+{
+void Start()
+    {
+        Genric genric = new Genric();
+        int currentValue = genric.GenricMethod<int>(5);
+        Debug.Log(currentValue);
+
+        GenricClass<int> genricClass = new GenricClass<int>();
+        genricClass.Capacity(5);
+    } 
+}
+```
+
+
+# Func (delegate)
+![](pic/FuncT1.PNG)
+![](pic/FuncT2.PNG)
+
+Action: "I don't expect the method returns a value"
+Func: "I expect the method to return a value of Type T"
+Predicate: "I expect the Func to return a bool"
+Delegate: "Any of the above and allows to use ref and out paramters"
+
+
+
+
+
+# Dictionary
+```csharp
+Dictionary<string, string> openWith =
+    new Dictionary<string, string>();
+```
+
+
+
+# [C#](https://www.tutorialsteacher.com/csharp/csharp-indexer)
+
+C# has roots from the C family, and the language is close to other popular languages like C++ and Java.
+
+The first version was released in year 2002. The latest version, C# 8, was released in September 2019.
+
+# Break vs Continue
+The break statement use to jump out /Exit of a loop.
+
+The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+# Method
+A method is a block of code which only runs when it is called.
+
+You can pass data, known as parameters, into a method.
+# Function
+Methods are used to perform certain actions, and they are also known as functions.
+
+
+ 
+
+Problem
+Profiler, Frame Debugger, Customize Render Pipeline
+
+# OOP
+Object-oriented programming (OOP) is a computer programming architecture that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior.
+
+Procedural programming is about writing procedures or functions that perform operations on the data, while object-oriented programming is about creating objects that contain both data and functions.
+
+* OOP is faster and easier to execute
+* OOP provides a clear structure for the programs
+* OOP helps to keep the C++ code DRY "Don't Repeat Yourself", and makes the code easier to maintain, modify and debug
+* OOP makes it possible to create full reusable applications with less code and shorter development time
+
+
+# Classes and objects 
+
+##### So, a class is a template for objects, and an object is an instance of a class.
+
+When the individual objects are created, they inherit all the variables and methods from the class.
+
+![](pic/classvsObject.PNG)
+
+Everything in C# is associated with classes and objects, along with its attributes and methods. For example: in real life, a car is an object. The car has attributes, such as weight and color, and methods, such as drive and brake.
+
+```csharp
+class Car 
+{
+// Class members
+  string color = "red";
+
+  static void Main(string[] args)
+  {
+    Car myObj = new Car();
+    Console.WriteLine(myObj.color);
+  }
+}
+```
+
+##### Class Members
+Fields and methods inside classes are often referred to as "Class Members"
+
+
+
+
+
+
+
+# [Constructors](https://www.w3schools.com/cs/cs_constructors.asp)
+**A constructor is a special method that is used to initialize objects**. The advantage of a constructor, is that it is called when an object of a class is created. It can be used to set initial values for fields:
+```csharp
+class Car
+{
+  public string model;
+
+  // Create a class constructor with a parameter
+  public Car(string modelName)
+  {
+    model = modelName;
+  }
+
+  static void Main(string[] args)
+  {
+    Car Ford = new Car("Mustang");
+    Console.WriteLine(Ford.model);
+  }
+}
+```
+* Note that the constructor name must match the class name, and it cannot have a return type
+* All classes have constructors by default
+
+
+# Namespace and Assembly ?
+
+A .Net Namespace provides the fundamental unit of logical code grouping while an assembly provides a fundamental unit of physical code grouping.
+
+##### Namespace
+<small>Namespaces is a logical group of related classes that can be used by any other language targeting the Microsoft .Net framework . It is more used for logical organization of your classes. Namespaces are a way of grouping type names and reducing the chance of name collisions.</small>
+
+##### Assembly
+<small>An assembly is a collection of types and resources that are built to work together and form a logical unit of functionality. It is an Output Unit, that is .exe or .dll file. It is a unit of Deployment and a unit of versioning and also it contain MSIL (Microsoft Intermediate Language) code. Assemblies are self describing, it contains all the metadata about the modules, types, and other elements in the form of a manifest.</small>
+
+# Access Modifiters
+> public->All Class
+
+> private -> Same Class
+
+> protected -> Inherited Class Too
+
+> Internal -> Same Assembly (Default)
+
+
+![](pic/AccessModifiters.PNG)
+##### Internal is the default if no access modifier is specified
+ 
+
+# Properties (Get and Set)
+The meaning of Encapsulation, is to make sure that "sensitive" data is hidden from users. To achieve this, you must:
+
+
+Getters and setters are used to protect your data, particularly when creating classes. For each instance variable, a getter method returns its value while a setter method sets or updates its value. ... The getter method returns the value of the attribute. The setter method takes a parameter and assigns it to the attribute
+
+
+* declare fields/variables as private
+* provide public get and set methods, through properties, to access and update the value of a private field
+* Fields can be made **read-only** (if you only use the get method), or **write-only** (if you only use the set method)
+```csharp
+public myclass {
+  private int _score;
+  public int MyScore {
+     get { return _score; }
+     set { _score = value; }
+  }
+}
+// another approch
+private x;
+ public int getX()
+ {
+     return x;
+ }
+ 
+ public void setX(int newX)
+ {
+     if(newX < 0)
+         x = 0;
+     else
+         x = newX;
+ }
+
+ // final approch
+ 
+ class Thing {
+  private int secret; // This is a field.
+
+  public int Secret { // This is a property.
+    get {
+      Debug.Print("Somebody is accessing the secret!");
+      return secret;
+    }
+
+    set {
+      Debug.Print("Somebody is writing to the secret!");
+      secret = value; // Note the use of the implicit variable "value" here.
+    }
+  }
+}
+// access from another method
+
+Thing thing = new Thing();
+thing.Secret = 23; // Use the setter.
+Debug.Print("Set the secret to {0}.", thing.Secret); // Use the getter.
+
+// short form
+public int Secret { get; set; }
+
+
+```
+
+
+# Inheritance (Derived and Base Class)
+Inheritance lets us inherit fields and methods from another class.
+
+##### Derived Class (child) -
+the class that inherits from another class
+
+* **Base Class (parent)** the class being inherited from
+* If you don't want other classes to inherit from a class, use the *sealed* keyword:
+* <small> The following members are not inherited: **Static constructors**, which initialize the static data of a class.
+**Instance constructors**, which you call to create a new instance of the class. Each class must define its own constructors.
+**Finalizers**, which are called by the runtime's garbage collector to destroy instances of a class.
+</small>
+
+```csharp
+// base classs
+sealed class Vehicle 
+{
+  ...
+}
+// drive class
+class Car : Vehicle 
+{
+  ...
+}
+
+```
+# Polymorphism (virtual - override )
+ Inheritance lets us inherit fields and methods from another class. Polymorphism uses those methods to perform different tasks. This allows us to perform a single action in different ways.
+ ```csharp
+class Animal  // Base class (parent) 
+{
+  public virtual void animalSound() 
+  {
+    Console.WriteLine("The animal makes a sound");
+  }
+}
+
+class Pig : Animal  // Derived class (child) 
+{
+  public override void animalSound() 
+  {
+    Console.WriteLine("The pig says: wee wee");
+  }
+}
+
+class Dog : Animal  // Derived class (child) 
+{
+  public override void animalSound() 
+  {
+    Console.WriteLine("The dog says: bow wow");
+  }
+}
+
+class Program 
+{
+  static void Main(string[] args) 
+  {
+    Animal myAnimal = new Animal();  // Create a Animal object
+    Animal myPig = new Pig();  // Create a Pig object
+    Animal myDog = new Dog();  // Create a Dog object
+
+    myAnimal.animalSound();
+    myPig.animalSound();
+    myDog.animalSound();
+  }
+}
+```
+
+ 
+# Why And When To Use "Inheritance" and "Polymorphism"?
+- It is useful for code **reusability**: reuse fields and methods of an existing class when you create a new class.
+
+
+
+
+
+# Abstraction
+Data abstraction is the process of hiding certain details and showing only essential information to the user.   Abstraction can be achieved with either abstract classes or interfaces
+
+# Abstract class 
+An abstract class is a class that is declared **abstract**, it may or may not include **abstract methods**. Abstract classes **cannot be instantiated**, but they can **be subclassed**
+
+##### Subclass
+A class that is derived from another class is called a subclass
+
+# Abstract method:
+can only be used in an abstract class, and it does not have a body. The body is provided by the derived class (inherited from).
+
+```csharp
+abstract class Animal 
+{
+  public abstract void animalSound();
+  public void sleep() 
+  {
+    Console.WriteLine("Zzz");
+  }
+}
+```
+# Why And When To Use Abstract Classes and Methods?
+To achieve security - hide certain details and only show the important details of an object.
+
+[Interface](https://github.com/gitOpu/ObjectPooling_Unity)
+
+ 
+* Another way to achieve abstraction in C#, is with interfaces.
+* An interface is a completely "abstract class", which can only contain abstract methods and properties (with empty bodies):
+* It is considered good practice to start with the letter "I" at the beginning of an interface.
+* By default, members of an interface are abstract and public.
+*  Interfaces can contain properties and methods, but not fields.
+* To access the interface methods, the interface must be "implemented" (kinda like inherited) by another class.
+*  The body of the interface method is provided by the "implement" class.
+* you do not have to use the override keyword when implementing an interface.
+* On implementation of an interface, you must  write all of its methods bodies
+* An interface cannot contain a constructor (as it cannot be used to create objects)
+```csharp
+ 
+// Interface
+interface IAnimal 
+{
+  void animalSound(); // interface method (does not have a body)
+}
+
+// Pig "implements" the IAnimal interface
+class Pig : IAnimal 
+{
+  public void animalSound() 
+  {
+    // The body of animalSound() is provided here
+    Console.WriteLine("The pig says: wee wee");
+  }
+}
+
+class Program 
+{
+  static void Main(string[] args) 
+  {
+    Pig myPig = new Pig();  // Create a Pig object
+    myPig.animalSound();
+  }
+}
+```
+
+# [Practical Example](https://github.com/gitOpu/ObjectPooling_Unity)
+
+```csharp
+//1 defination
+public interface IPooledObject  
+{
+    void OnObjectSpwan();
+}
+//2 mention when to execute
+public class ObjectPooler : MonoBehaviour
+{
+public Dictionary<string, Queue<GameObject>> poolDictionary = new Dictionary<string, Queue<GameObject>>();
+GameObject objectToSpawn =  poolDictionary[tag].Dequeue();
+IPooledObject objectIsPooled = objectToSpawn.GetComponent<IPooledObject>();
+        if(objectIsPooled != null)
+        {
+            objectIsPooled.OnObjectSpwan();
+        }
+}
+//3 Method body create from another class     
+public class Cube : MonoBehaviour, IPooledObject
+{
+public void OnObjectSpwan() {
+    }
+}
+```
+
+# Why And When To Use Interfaces?
+1) To achieve security - hide certain details and only show the important details of an object (interface).
+
+# Enums
+C# enum is a value type with a set of related named constants often referred as an enumerator list. The C# enum keyword is used to declare an enumeration. It is a primitive data type, which is user-defined. Enums type can be an integer (float, int, byte, double etc.)
+
+An enum is a special "class" that represents a group of constants (unchangeable/read-only variables).
+* Enum is short for "enumerations", which means "specifically listed".
+
+```csharp
+enum Level 
+{
+  Low,
+  Medium,
+  High
+}
+```
+
+
+# Struct  vs class
+##### Usage : 
+1) Structures provide better performance when we have small collections of value-types that you want to group together. 2) Use Structure if all member fields are of value type. Use Class if any one member is of reference type.
+
+##### Struct
+* Structs are value types, allocated either on the stack or inline in containing types.
+* Allocations and de-allocations of value types are in general cheaper than allocations and de-allocations of reference types.
+* In structs, each variable contains its own copy of the data (except in the case of the ref and out parameter variables), and an operation on one variable does not affect another variable.
+
+##### Classes 
+* Classes are reference types, allocated on the heap and garbage-collected.
+* Assignments of large reference types are cheaper than assignments of large value types.
+* In classes, two variables can contain the reference of the same object and any operation on one variable can affect another variable.
+
+ In this way, struct should be used only when you are sure that,
+* It logically represents a single value, like primitive types (int, double, etc.).
+* It is immutable.
+* It should not be boxed and un-boxed frequently.
+
+```csharp
+struct Location   
+{  
+    publicint x, y;  
+    publicLocation(int x, int y)  
+    {  
+        this.x = x;  
+        this.y = y;  
+    }  
+}  
+Locationa = new Location(20, 20);  
+Locationb = a;  
+a.x = 100;  
+System.Console.WriteLine(b.x)  
+;
+```
+
+
+
+# Exceptions - Try..Catch
+```csharp
+try
+{
+  int[] myNumbers = {1, 2, 3};
+  Console.WriteLine(myNumbers[10]);
+}
+catch (Exception e)
+{
+  Console.WriteLine(e.Message);
+}
+```
+# Method Overloading
+Two or more than two methods having the same name but different parameters is what we call method overloading in C#.
+
+
+# IEnumerable
+IEnumerable is an interface defining a single method GetEnumerator() that returns an IEnumerator interface. It is the base interface for all non-generic collections that can be enumerated. 
+
+
+# [List<T>](https://www.tutorialsteacher.com/csharp/csharp-generics)
+The List<T> is a collection of strongly typed objects that can be accessed by index and having methods for sorting, searching, and modifying list. It is the generic(Generic means the general form, not specific.) version of the ArrayList that comes under System.Collection.Generic namespace.
+
+# Indexers
+An indexer is a special type of property that allows a class or a structure to be accessed like an array for its internal collection.
+
+# Heap?
+The heap is a memory used by programming languages to store global variables. By default, all global variable are stored in heap memory space. It supports Dynamic memory allocation.
+
+# [Key Differences between Stack and Heap](https://www.guru99.com/stack-vs-heap.html#:~:text=The%20heap%20is%20a%20memory,tightly%20managed%20by%20the%20CPU.)
+![](pic/heapvsstack1.gif)
+
+# Array
+A variable is used to store a literal value, whereas an array is used to store multiple literal values.
+
+An array is the data structure that stores a fixed number of literal values (elements) of the same data type. Array elements are stored contiguously in the memory.
+
+![](pic/Array.png)
+
+```csharp
+string[] cars;
+string[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+int[] myNum = {10, 20, 30, 40};
+```
+
+# Indexers
+An indexer is a special type of property that allows a class or a structure to be accessed like an array for its internal collection.
+
+# [Dictionary](https://www.tutorialsteacher.com/csharp/csharp-dictionary) 
+Dictionary<TKey,TValue> Class
+Namespace: System.Collections.Generic
+
+The Dictionary<TKey, TValue> is a generic collection that stores key-value pairs in no particular order.
+
+* Dictionary Characteristics
+* Dictionary<TKey, TValue> stores key-value pairs.
+* Comes under System.Collection.Generic namespace.
+* Implements IDictionary<TKey, TValue> interface.
+* Keys must be unique and cannot be null.
+* Values can be null or duplicate.
+* Values can be accessed by passing associated key in the indexer e.g. myDictionary[key]
+* Elements are stored as KeyValuePair<TKey, TValue> objects.
+
+```csharp
+IDictionary<int, string> numberNames = new Dictionary<int, string>();
+foreach(KeyValuePair<int, string> kvp in numberNames)
+    Console.WriteLine("Key: {0}, Value: {1}", kvp.Key, kvp.Value);
+```
+
+
+# List<T>
+The List<T> is a collection of strongly typed objects that can be accessed by index and having methods for sorting, searching, and modifying list. It is the generic version of the ArrayList that comes under System.Collection.Generic namespace.
+
+List<T> Characteristics
+* List<T> equivalent of the ArrayList, which implements IList<T>.
+* It comes under System.Collection.Generic namespace.
+* List<T> can contain elements of the specified type. It provides compile-time type checking and doesn't perform boxing-unboxing because it is generic.
+* Elements can be added using the Add(), AddRange() methods or collection-initializer syntax.
+* Elements can be accessed by passing an index e.g. myList[0]. Indexes start from zero.
+* List<T> performs faster and less error-prone than the ArrayList.
+
+List<int> primeNumbers = new List<int>();
+primeNumbers.Add(1); // adding elements using add() method
+
+You can also add elements of the custom classes using the collection-initializer syntax. The following adds objects of the Student class in the List<Student>.
+
+```csharp
+var students = new List<Student>() { 
+                new Student(){ Id = 1, Name="Bill"},
+                new Student(){ Id = 2, Name="Steve"},
+                new Student(){ Id = 3, Name="Ram"},
+                new Student(){ Id = 4, Name="Abdul"}
+            };
+```
+
+
+
+ArrayList
+In C#, the ArrayList is a non-generic collection of objects whose size increases dynamically. It is the same as Array except that its size increases dynamically.
+
+
+Stack
+Queue
+ 
+
+
+
+
+# [Heap](https://www.geeksforgeeks.org/heap-data-structure/)
+*Binary Tree, Max Heap, Node, Children*
+Tree
+Root, Edge, Parent, Child, Leaf, Internal Node, Child Count called Degree, Level(Start 0),Height, Depth, Path
+
+
+
+# [Understanding Automatic Memory Management](https://docs.unity3d.com/Manual/UnderstandingAutomaticMemoryManagement.html)
+When an object, string or array is created, the memory required to store it is allocated from a central pool called the heap. When the item is no longer in use, the memory it once occupied can be reclaimed and used for something else. In the past, it was typically up to the programmer to allocate and release these blocks of heap memory explicitly with the appropriate function calls. Nowadays, runtime systems like Unity’s Mono engine manage memory for you automatically. 
+
+I finished the Draft GDD of the project right now, I will show you tomorrow morning
+
+A Vector2 is either a point or a direction, depending on what you use it for. For example, if it's (5, 0), then it's either a point at x=5, y=0, or it's a vector pointing along the positive x axis with a slope of 0 and a length of 5. In this case it's not normalized since the length is greater than 1. If you normalize it, then it will become (1, 0) and will have a length of 1.
