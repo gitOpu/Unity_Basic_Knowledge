@@ -1,0 +1,7 @@
+D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\bin\Debug\BasicOne.exe.config
+D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\bin\Debug\BasicOne.exe
+D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\bin\Debug\BasicOne.pdb
+D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\obj\Debug\BasicOne.csprojAssemblyReference.cache
+D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\obj\Debug\BasicOne.csproj.CoreCompileInputs.cache
+D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\obj\Debug\BasicOne.exe
+D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\obj\Debug\BasicOne.pdb

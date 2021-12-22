@@ -1,18 +1,174 @@
-# .NET Framework
-The .NET Framework is a software framework developed by Microsoft that runs primarily on Microsoft Windows. It includes a large class library called Framework Class Library and provides language interoperability(আন্তঃব্যবহার্যতা) across several programming languages
+# Basic knowledge of Software Technology, Programming Concept (OOP, C#), Game Development (Unity).
 
-# [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html)
+* What is Game Engine, How its works
+* What is the difference between game engine and other IDE
+* What is Unity, 
+* Why you chose Unity
+* Tell me few game engine names
+* Unity vs Unreal Engine vs Cocos
+* What is Gameobject
+* what is Prefab
+* what is Shader Graph
+* what is URP
+* What is Monobehaviour
+
+# What is an abstract class?
+* An abstract class is a class that is declared abstract —it may or may not include abstract methods. Abstract classes cannot be instantiated, but they can be subclassed. When an abstract class is subclassed, the subclass usually provides implementations for all of the abstract methods in its parent class.
+
+# Abstract class: 
+* Abstract class is a restricted class that cannot be used to create objects (to access it, it must be inherited from another class). Abstract method: can only be used in an abstract class, and it does not have a body.
+
+# Abstract Method
+* C#: An Abstract method is a method without a body. The implementation of an abstract method is done by a derived class. When the derived class inherits the abstract method from the abstract class, it must override the abstract method. This requirment is enforced at compile time and is also called **dynamic polymorphism**.
+
+* An abstract method is a method that is declared, but contains no implementation. Abstract classes cannot be instantiated, and require subclasses to provide implementations for the abstract methods.
+
+# Static Variable
+* Static variables are those variables whose values are shared among all the instance or object of a class. When we define any variable as static, it gets attached to a class rather than an object. The memory for the static variable will be allocation during the class loading time.
+
+# Static Method
+Static methods, much like class methods, are methods that are bound to a class rather than its object. They do not require a class instance creation. So, they are not dependent on the state of the object. ... Class method works with the class since its parameter is always the class itself.
+
+# Static Class
+* A static class in C# is a class that cannot be **instantiated**. A static class can only contain static data members including static methods, static constructors, and static properties.
+
+# C# Console
+* Press Ctrl+F5, to run C# project with hanging prompt
+* [Method are Static](https://stackoverflow.com/questions/1685692/c-sharp-console-application-static-methods) : Member functions don't have to be static; but if they are not static, that requires you to instantiate a Program object in order to call a member method.
+
+# Create a new class in C# console
+Go to solution explorer MBR click on project name, ad a c# class, we can access this newly created class by creating an object of the class. you can create a static class and static method to access them by dot(.).
+```csharp
+class Book
+   {
+   }
+```
+
+```csharp
+Boob book1 = new Book();
+book1.title = "Adventure of Shahanama";
+```
+# Why do we need getter and setter if we can save value directly?
+we need getter and setter to validate data from constructor/users
+```csharp
+class Movie
+   {
+       public string name;
+        private string rating;
+        public static int movieCount;
+        public Movie(string title, string rateus)
+        {
+            this.name = title;
+            this.Rating = rateus;
+            movieCount++;
+        }
+       public string Rating
+       {
+           get { return rating; }
+           set {
+           if(value == "G"|| value == "PG")
+               {
+                   rating = value;
+               }
+               else
+               {
+                   rating = "NR";
+               }
+           }
+       }
+   }
+```
+```csharp
+static void Main(string[] args)
+        {
+
+            Movie movie1 = new Movie("Avengers", "doge");
+            Console.WriteLine(movie1.Rating);
+        }
+        // output NR
+```
+
+# Class with with Multiple Constructor
+```csharp
+class Book
+   {
+       public string title;
+       public Book(){
+       }
+       }
+       public Book(string name)
+       {
+          this.title = name;
+          Console.WriteLine("Book tile is " + name);
+       }
+       
+   }
+```
+```csharp
+Book book1 = new Book();
+Book book2 = new Book("Harry Potter");
+```
+
+# Example of Try Catch
+```csharp
+            try
+           {
+               int number = Convert.ToInt32(Console.ReadLine());
+           }
+           catch(Exception e)
+           {
+               Console.WriteLine("Error " + e.Message);
+           }
+```
+
+# Print a grid of row 5, column = 7
+```csharp
+static void Grid(int row, int column)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    Console.Write($"({i},{j}); ");
+                    }
+                Console.Write("\n");
+            }
+        }
+(0,0); (0,1); (0,2); (0,3); (0,4); (0,5); (0,6);
+(1,0); (1,1); (1,2); (1,3); (1,4); (1,5); (1,6);
+(2,0); (2,1); (2,2); (2,3); (2,4); (2,5); (2,6);
+(3,0); (3,1); (3,2); (3,3); (3,4); (3,5); (3,6);
+(4,0); (4,1); (4,2); (4,3); (4,4); (4,5); (4,6);
+```
+
+# Write a program that print a sequential tuple series with negative values?
+```csharp
+for (int i = 1; i < 24; i++)
+           {
+               int value = (int) i / 2;
+               Console.Write(Math.Pow(-1, i) * value + "\n");
+           }
+           //0, 1, -1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6, 7, -7, 8, -8, 9, -9, 10, -10, 11, -11,
+```
+
+# What is a programming?
+Programming is the process of creating a set of **instructions** that tell a computer how to perform a task
+
+# What is a programming framework?
+* A programming framework is a **prepackaged** set of solutions that solves common development problems
+
+# What is .NET Framework
+The .NET Framework is a software framework developed by Microsoft that runs primarily on Microsoft Windows. It includes a large class library called Framework Class Library and provides language interoperability across several programming languages
+
+# Which will called first in Unity ? OnEnable or Awake
+* Awake will be called first, Awake will be called when a GameObject is created or a prefab is instantiated. OnEnable will be called when a GameObject gets enabled. <br>
+*Awake will be called once where OnEnable will be called many times. When an object is reactivated OnEnable will be called.*
+
+# What is MonoBehaviour [more](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html)
 MonoBehaviour is the base class from which every Unity script derives.
-When you use C#, you must explicitly derive from MonoBehaviour.
-Start()
-Update()
-FixedUpdate()
-LateUpdate()
-OnGUI()
-OnDisable()
-OnEnable()
+When you use C#, you must explicitly derive from MonoBehaviour. MonoBehaviour called its event function as predefined way, say : Awake() Start() Update() FixedUpdate() LateUpdate() OnGUI() OnDisable() OnEnable() etc
 
-# [FPS & Application Target Frame Rate](https://docs.unity3d.com/ScriptReference/Application-targetFrameRate.html)
+# What is FPS & Application Target Frame Rate [more](https://docs.unity3d.com/ScriptReference/Application-targetFrameRate.html)
 
 Instructs the game to try to render at a specified frame rate.
 
