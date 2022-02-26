@@ -10,10 +10,13 @@ namespace BasicOne
     {
         static void Main(string[] args)
         {
+            List<string> test = new List<string>() { "Maruf", "Mamun" };
 
-            Console.WriteLine(100 % 25 == 0);
+            var tst = test.Where(r => r.ToString() == "Simi").First();
 
-            Console.ReadLine();
+            Console.WriteLine(tst);
+
+           Console.ReadLine();
         }
         // 4 Class with Constructor
         static void ExContructor()

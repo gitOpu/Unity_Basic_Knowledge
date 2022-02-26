@@ -12,10 +12,11 @@
 * what is URP
 * What is Monobehaviour
 
+# Inheritance
+* Super Sub, Virtual Override
+
 # What is an abstract class?
 * An abstract class is a class that is declared abstract —it may or may not include abstract methods. Abstract classes cannot be instantiated, but they can be subclassed. When an abstract class is subclassed, the subclass usually provides implementations for all of the abstract methods in its parent class.
-
-# Abstract class: 
 * Abstract class is a restricted class that cannot be used to create objects (to access it, it must be inherited from another class). Abstract method: can only be used in an abstract class, and it does not have a body.
 
 # Abstract Method
@@ -28,6 +29,9 @@
 
 # Static Method
 Static methods, much like class methods, are methods that are bound to a class rather than its object. They do not require a class instance creation. So, they are not dependent on the state of the object. ... Class method works with the class since its parameter is always the class itself.
+```csharp
+Console.WriteLine(Math.Sqrt(16));
+```
 
 # Static Class
 * A static class in C# is a class that cannot be **instantiated**. A static class can only contain static data members including static methods, static constructors, and static properties.
@@ -88,7 +92,7 @@ static void Main(string[] args)
         // output NR
 ```
 
-# Class with with Multiple Constructor
+# Class with Multiple Constructor
 ```csharp
 class Book
    {
