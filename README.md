@@ -1314,7 +1314,93 @@ public class ExampleScript : MonoBehaviour
 }
 
 ```
+# Event System New Example - Main Script
 
+```C#
+ using System;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class CsharpToUXML : MonoBehaviour
+{
+    private UIDocument uiDocument;
+    private VisualElement root;
+    
+    public Action action; //Action : public  delegate void Action;
+    public Action action1;
+    public Action<string> action2;
+    public event Action3<string> action3;
+    public delegate void Action3<T>(T value);
+   
+    private void Awake()
+    {
+        uiDocument = GetComponent<UIDocument>();
+        root = uiDocument.rootVisualElement;
+
+        action = () => { Debug.Log( $" On Clicked");};  // Subscription
+        action2 = (x) => { Debug.Log( $" On Clicked {x}");}; // Subscription
+        // action3 = (x) => {Debug.Log( $" On Clicked {x}"); }; // Subscription
+    }
+
+    private void Start()
+    {
+        
+        var buttonRed = new Button()
+        {
+            text = "ButtonRed"
+        };
+        buttonRed.clicked += action; // Event Invoke
+        
+        var buttonGreen = new Button(action1) //Button(action1.Invoke),  Event Invoke
+        {
+            text = "ButtonGreen"
+        };
+        
+        var buttonYellow = new Button(){ text = "ButtonYellow"};
+        buttonYellow.RegisterCallback<MouseUpEvent>(callback => action2($"buttonYellow {callback.clickCount}")); // Event Invoke
+        
+        Button buttonCyan = new Button(() => action3("ButtonCyan")); // Event Invoke
+        buttonCyan.text = "ButtonCyan";
+        
+        root.Add(buttonCyan);
+        root.Add(buttonGreen);
+        root.Add(buttonRed);
+        root.Add(buttonYellow);
+    }
+}
+
+```
+#  Event System New Example - Subscribe Script
+
+```C#
+ using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ButtonEventListener : MonoBehaviour
+{
+   [SerializeField] private CsharpToUXML _csharpToUxml;
+
+   private void OnEnable()
+   {
+      _csharpToUxml.action1 += CsharpToUxmlOnAction1; // Subscription
+      _csharpToUxml.action3 += CsharpToUxmlOnAction3; // Subscription
+   }
+   private void CsharpToUxmlOnAction1()
+   {
+      Debug.Log( $" OnClicked from ButtonEventListener");
+   }
+   private void CsharpToUxmlOnAction3(string value)
+   {
+      Debug.Log( $"ButtonEventListener OnClicked {value}");
+   }
+
+  
+}
+
+
+```
 ...................................................
 
 # Click to any object change color
