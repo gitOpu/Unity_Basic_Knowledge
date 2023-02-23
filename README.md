@@ -1314,7 +1314,12 @@ public class ExampleScript : MonoBehaviour
 }
 
 ```
-# Event System New Example - Main Script
+### Definitions - DELEGATE AND LAMBDA EXPRESION :
+* A delegate is essentially a reference pointer to a method that can be used as a variable or parameter in your code.
+* An Event is a specialized type of delegate that allows you to alert other classes when something happens. 
+* Lambda (or anonymous) methods follow closely with delegates, and there are only some small details separating them. A lambda method is a self-contained, anonymously defined inline method. 
+
+# DELEGATE AND LAMBDA EXPRESION : New Example - Main Script
 
 ```C#
  using System;
@@ -1326,22 +1331,47 @@ public class CsharpToUXML : MonoBehaviour
     private UIDocument uiDocument;
     private VisualElement root;
     
+    delegate void AdditionDelegate(int a, int b);
+    private AdditionDelegate addition;
+    public Action<int, int> Sum;
+    
     public Action action; //Action : public  delegate void Action;
     public Action action1;
     public Action<string> action2;
+  
     public event Action3<string> action3;
     public delegate void Action3<T>(T value);
+
+    private Action<string> action4;
+    
    
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement;
 
-        action = () => { Debug.Log( $" On Clicked");};  // Subscription
-        action2 = (x) => { Debug.Log( $" On Clicked {x}");}; // Subscription
-        // action3 = (x) => {Debug.Log( $" On Clicked {x}"); }; // Subscription
-    }
+        
+        addition = delegate (int a, int b) {
+            Debug.Log(a + b);
+        };
+        addition(3, 4); // will print: 7
 
+        Sum = (int a, int b) =>
+        {
+            Debug.Log(a + b);
+        };
+        Sum(1, 5);
+        
+        action = () => { Debug.Log( $" On Clicked");};  // Subscription
+       // action =  delegate{ Debug.Log( $" On Clicked");};  // Subscription
+        action2 = (x) => { Debug.Log( $" On Clicked {x}");}; // Subscription
+       // action3 = (x) => {Debug.Log( $" On Clicked {x}"); }; // Subscription
+       action4 = delegate(string x) { Debug.Log( $" On Clicked {x}");};  // Subscription
+
+       
+
+    }
+    
     private void Start()
     {
         
@@ -1359,18 +1389,28 @@ public class CsharpToUXML : MonoBehaviour
         var buttonYellow = new Button(){ text = "ButtonYellow"};
         buttonYellow.RegisterCallback<MouseUpEvent>(callback => action2($"buttonYellow {callback.clickCount}")); // Event Invoke
         
-        Button buttonCyan = new Button(() => action3("ButtonCyan")); // Event Invoke
-        buttonCyan.text = "ButtonCyan";
-        
+        Button buttonCyan = new Button(() => action3("ButtonCyan"))
+        {
+            text = "ButtonCyan"
+        }; // Event Invoke
+
+        Button buttonBlue = new Button(() => action4("ButtonBlue"))
+        {
+            text = "ButtonBlue"
+        }; // Event Invoke
+
         root.Add(buttonCyan);
         root.Add(buttonGreen);
         root.Add(buttonRed);
         root.Add(buttonYellow);
+        root.Add(buttonBlue);
     }
 }
 
+
+
 ```
-#  Event System New Example - Subscribe Script
+# DELEGATE AND LAMBDA EXPRESION :  New Example - Subscribe Script
 
 ```C#
  using System;
