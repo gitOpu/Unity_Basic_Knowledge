@@ -5,3 +5,11 @@ D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\obj\Debug\BasicOne.csprojAssemblyRefere
 D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\obj\Debug\BasicOne.csproj.CoreCompileInputs.cache
 D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\obj\Debug\BasicOne.exe
 D:\UNITY_BASIC_KNOWLEDGE\CSharp\BasicOne\obj\Debug\BasicOne.pdb
+C:\Unity\Console & Learning\BasicKnowledge\Unity_Basic_Knowledge\CSharp\BasicOne\bin\Debug\BasicOne.exe.config
+C:\Unity\Console & Learning\BasicKnowledge\Unity_Basic_Knowledge\CSharp\BasicOne\bin\Debug\BasicOne.exe
+C:\Unity\Console & Learning\BasicKnowledge\Unity_Basic_Knowledge\CSharp\BasicOne\bin\Debug\BasicOne.pdb
+C:\Unity\Console & Learning\BasicKnowledge\Unity_Basic_Knowledge\CSharp\BasicOne\obj\Debug\BasicOne.csproj.AssemblyReference.cache
+C:\Unity\Console & Learning\BasicKnowledge\Unity_Basic_Knowledge\CSharp\BasicOne\obj\Debug\BasicOne.csproj.SuggestedBindingRedirects.cache
+C:\Unity\Console & Learning\BasicKnowledge\Unity_Basic_Knowledge\CSharp\BasicOne\obj\Debug\BasicOne.csproj.CoreCompileInputs.cache
+C:\Unity\Console & Learning\BasicKnowledge\Unity_Basic_Knowledge\CSharp\BasicOne\obj\Debug\BasicOne.exe
+C:\Unity\Console & Learning\BasicKnowledge\Unity_Basic_Knowledge\CSharp\BasicOne\obj\Debug\BasicOne.pdb
