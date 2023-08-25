@@ -1,17 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+ 
 
 namespace BasicOne
 {
- 
+    public class AnimalTypeAttribute : Attribute
+    {
+        // The constructor is called when the attribute is set.
+        public AnimalTypeAttribute(Animal pet)
+        {
+            thePet = pet;
+        }
 
+        // Keep a variable internally ...
+        protected Animal thePet;
+
+        // .. and show a copy to the outside world.
+        public Animal Pet
+        {
+            get { return thePet; }
+            set { thePet = value; }
+        }
+    }
+    public class AnimalTypeTestClass
+    {
+        [AnimalType(Animal.Dog)]
+        public void DogMethod() { }
+
+        [AnimalType(Animal.Cat)]
+        public void CatMethod() { }
+
+        [AnimalType(Animal.Bird)]
+        public void BirdMethod() { }
+    }
     class Program
     {
         
         static void Main(string[] args)
+        {
+            
+            Console.ReadKey();
+        }
+        static void AttributeExample()
+        {
+            AnimalTypeTestClass testClass = new AnimalTypeTestClass();
+            Type type = testClass.GetType();
+            // Iterate through all the methods of the class.
+            foreach (MethodInfo mInfo in type.GetMethods())
+            {
+                // Iterate through all the Attributes for each method.
+                foreach (Attribute attr in
+                    Attribute.GetCustomAttributes(mInfo))
+                {
+                    // Check for the AnimalType attribute.
+                    if (attr.GetType() == typeof(AnimalTypeAttribute))
+                        Console.WriteLine(
+                            "Method {0} has a pet {1} attribute.",
+                            mInfo.Name, ((AnimalTypeAttribute)attr).Pet);
+                }
+            }
+        }
+        static void CompareableTest()
         {
             MyClass obj1 = new MyClass { Value = 5 };
             MyClass obj2 = new MyClass { Value = 3 };
@@ -24,10 +77,6 @@ namespace BasicOne
                 Console.WriteLine("obj1 is greater than obj2");
             else
                 Console.WriteLine("obj1 is equal to obj2");
-
-
-
-            Console.ReadKey();
         }
         static void WorkingWithQueue()
         {
